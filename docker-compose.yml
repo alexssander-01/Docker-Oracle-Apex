@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  oracleapex_23.2:
+    build:
+      context: .
+      args:
+        - ORACLE_PWD=${ORACLE_PWD}
+        - ORDS_CONFIG=${ORDS_CONFIG}
+        - ORDS_LOGS=${ORDS_LOGS}
+        - DB_PORT=${DB_PORT}
+        - DB_SERVICE=${DB_SERVICE}
+        - SYSDBA_USER=${SYSDBA_USER}
+        - HOSTNAME_=${HOSTNAME_}
+    container_name: oracleapex23.2
+    volumes:
+    #  -./volumes/oradata:/opt/oracle/oradata
+      - ./scripts/setup:/opt/oracle/scripts/setup
+      - ./scripts/startup:/opt/oracle/scripts/startup
+    ports:
+      - '8080:8080'
+   
+    
